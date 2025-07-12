@@ -103,6 +103,15 @@ BASE_URL=http://localhost:3000/api
 
 ```
 
+### Frontend `.env` File
+
+Create a file named `.env` inside the `backend/` directory:
+
+```env
+VITE_BASE_URL=http://localhost:3000/api
+
+```
+
 
 ### Option 1: Run with Docker
 

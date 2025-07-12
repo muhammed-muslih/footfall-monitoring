@@ -13,7 +13,7 @@ dotenv.config();
 const server = express();
 server.use(express.json());
 server.use(morgan("dev"));
-server.use(cors());
+server.use(cors({ origin: "*" }));
 
 connectDb();
 server.use("/api", sensorRoutes);
