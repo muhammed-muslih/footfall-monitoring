@@ -92,7 +92,7 @@ MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>.mongodb.net/footfall
 
 -Note: Replace <username>, <password>, and <cluster-url> with your actual MongoDB Atlas credentials.
 
----
+```
 
 
 ### Option 1: Run with Docker
