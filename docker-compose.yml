@@ -17,7 +17,8 @@ services:
     build: 
       context: ./frontend
       dockerfile: Dockerfile
-    restart: unless-stopped   
+    restart: unless-stopped  
+    env_file: ./frontend/.env   
     volumes:
       - ./frontend:/app
       - frontend_node_modules:/app/node_modules

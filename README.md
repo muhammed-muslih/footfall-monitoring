@@ -97,6 +97,7 @@ Create a file named `.env` inside the `backend/` directory:
 ```env
 PORT=3000
 MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>.mongodb.net/footfall_db
+BASE_URL=http://localhost:3000/api
 
 -Note: Replace <username>, <password>, and <cluster-url> with your actual MongoDB Atlas credentials.
 

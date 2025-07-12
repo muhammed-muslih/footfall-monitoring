@@ -3,6 +3,8 @@ import moment from "moment-timezone";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
+
+const BASE_URL = process.env.BASE_URL;
 const sensors = [
   {
     sensor_id: "sensor-1",
@@ -18,7 +20,6 @@ const sensors = [
   },
 ];
 
-const PORT = process.env.PORT || 3000;
 const startSensorSimulation = () => {
   cron.schedule(
     "0 * * * *",
@@ -33,7 +34,7 @@ const startSensorSimulation = () => {
           count: Math.floor(Math.random() * (150 - 5 + 1)) + 5,
         };
         try {
-          await axios.post(`http://localhost:${PORT}/api/sensor-data`, payload);
+          await axios.post(`${BASE_URL}/sensor-data`, payload);
           console.log(`Sent data from ${sensor.sensor_id}`, payload);
         } catch (error) {
           console.error(
