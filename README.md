@@ -58,6 +58,14 @@ This project is a Mini Footfall Monitoring System built using the MERN stack (Mo
 
 ---
 
+## 📡 API Endpoints
+
+- `GET /api/analytics` – Get hourly footfall data
+- `GET /api/devices` – Get list of devices with status
+- `POST /api/sensor-data` – Submit sensor data (used by simulator)
+
+---
+
 ## 🔧 Setup Instructions
 
 Before running the project, make sure you configure the necessary environment variables.
