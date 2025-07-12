@@ -1,0 +1,39 @@
+name: footfall-monitoring
+
+services: 
+  api: 
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./backend/.env  
+    volumes:
+      - ./backend:/app
+       - backend_node_modules:/app/node_modules
+    ports:
+      - 3000:3000
+
+  frontend : 
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped   
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    networks:
+      - footfall-app  
+    ports: 
+      - 5173:5173
+    depends_on:
+      - api  
+      
+volumes:
+  backend_node_modules:
+  frontend_node_modules:
+
+networks: 
+  footfall-app:
+    driver: bridge
+      
+  
