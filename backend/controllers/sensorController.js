@@ -29,7 +29,7 @@ export const postSensorData = asyncHandler(async (req, res, next) => {
       name,
       latitude,
       longitude,
-      lastSeen: moment().tz("Asia/Qatar").toDate()
+      lastSeen: moment().tz("Asia/Qatar").toDate(),
     });
   }
   res.status(201).json({ message: "Data recorder", data });
@@ -42,12 +42,22 @@ export const getAnalytics = asyncHandler(async (req, res, next) => {
   const tomorrow = moment(today).add(1, "day").format();
   const hourly = await SensorData.aggregate([
     {
-      $match: { timestamp: { $gte: today, $lt: tomorrow } },
+      $match: {
+        timestamp: {
+          $gte: new Date(today),
+          $lt: new Date(tomorrow),
+        },
+      },
     },
     {
       $group: {
         _id: {
-          hour: { $hour: "$timestamp" },
+          hour: {
+            $hour: {
+              date: "$timestamp",
+              timezone: "Asia/Qatar",
+            },
+          },
           sensor: "$sensor_id",
         },
         total: { $sum: "$count" },
@@ -57,6 +67,7 @@ export const getAnalytics = asyncHandler(async (req, res, next) => {
       $sort: { "_id.hour": -1 },
     },
   ]);
+
   res.status(200).json({ message: "hourly sensor data", hourly });
 });
 
